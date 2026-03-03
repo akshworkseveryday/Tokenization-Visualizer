@@ -19,4 +19,7 @@ class TokenizerService:
         return list(self.tokenizers.keys())
 
     def get_tokenizer(self, name):
-        return self.tokenizers.get(name)
+        tokenizer = self.tokenizers.get(name)
+        if tokenizer is None:
+            raise ValueError(f"Unknown tokenizer: {name}")
+        return tokenizer

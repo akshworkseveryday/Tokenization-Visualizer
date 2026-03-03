@@ -6,5 +6,7 @@ class WordTokenizer(BaseTokenizer):
         return text.split()
 
     def encode(self, text: str):
+        """Encode using vocabulary: each unique token maps to a unique ID (industry standard)."""
         tokens = self.tokenize(text)
-        return list(range(len(tokens)))
+        vocab = {t: i for i, t in enumerate(sorted(set(tokens)))}
+        return [vocab[t] for t in tokens]
